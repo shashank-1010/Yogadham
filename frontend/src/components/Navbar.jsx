@@ -1,0 +1,88 @@
+import { useEffect, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
+import { SOCIAL_LINKS } from '../utils/siteData';
+import './Navbar.css';
+
+const NAV_LINKS = [
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Programs', to: '/programs' },
+  { label: 'Trainers', to: '/trainers' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Contact', to: '/contact' },
+];
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [window.location.pathname]);
+
+  return (
+    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+      <div className="container navbar__inner">
+        <Link to="/" className="navbar__logo">
+          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="#1F5E4A" />
+            <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#D6B36A" />
+          </svg>
+          <span>
+            Yoga<em>dham</em>
+          </span>
+        </Link>
+
+        <nav className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
+          {NAV_LINKS.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === '/'}
+              className={({ isActive }) => `navbar__link ${isActive ? 'navbar__link--active' : ''}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+
+          <div className="navbar__socials navbar__socials--mobile">
+            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
+            <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
+          </div>
+
+          <div className="navbar__cta navbar__cta--mobile">
+            <Link to="/register" className="btn btn-accent btn-block">Register Now</Link>
+          </div>
+        </nav>
+
+        <div className="navbar__right">
+          <div className="navbar__socials">
+            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
+            <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
+          </div>
+          <Link to="/register" className="btn btn-accent">Register Now</Link>
+
+          <button
+            className="navbar__burger"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+}
