@@ -6,7 +6,12 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition),
+    transform var(--transition-slow);
+}
+
+.navbar--hidden {
+  transform: translateY(-100%);
 }
 
 .navbar--scrolled {
@@ -33,6 +38,14 @@
   flex-shrink: 0;
 }
 
+.navbar__logo svg {
+  transition: transform var(--transition);
+}
+
+.navbar__logo:hover svg {
+  transform: rotate(-8deg) scale(1.06);
+}
+
 .navbar__logo em {
   font-style: italic;
   color: var(--color-accent-dark);
@@ -46,6 +59,7 @@
 }
 
 .navbar__link {
+  position: relative;
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
@@ -55,13 +69,34 @@
   transition: color var(--transition), border-color var(--transition);
 }
 
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
 .navbar__link:hover {
   color: var(--color-primary);
+}
+
+.navbar__link:hover::after {
+  transform: scaleX(1);
 }
 
 .navbar__link--active {
   color: var(--color-primary-dark);
   border-color: var(--color-accent);
+}
+
+.navbar__link--active::after {
+  transform: scaleX(0);
 }
 
 .navbar__right {

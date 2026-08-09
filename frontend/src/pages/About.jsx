@@ -24,13 +24,13 @@ export default function About() {
 
       <section className="section">
         <div className="container about-story">
-          <div className="about-story__media">
+          <div className="about-story__media reveal reveal--left">
             <img
               src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=800&q=80"
               alt="Outdoor group class practising a standing balance pose"
             />
           </div>
-          <div className="about-story__text">
+          <div className="about-story__text reveal reveal--right" style={{ '--reveal-delay': '120ms' }}>
             <span className="eyebrow">Our Story</span>
             <h2>Yoga taught the way it was meant to be</h2>
             <p>
@@ -50,7 +50,7 @@ export default function About() {
 
       <section className="section section--alt">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Mission &amp; Values</span>
             <h2>What guides our teaching</h2>
           </div>
@@ -64,13 +64,13 @@ export default function About() {
 
       <section className="section">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Our Journey</span>
             <h2>Milestones along the way</h2>
           </div>
           <div className="timeline">
             {MILESTONES.map((m) => (
-              <div className="timeline__item" key={m.year}>
+              <div className="timeline__item reveal" key={m.year}>
                 <span className="timeline__year">{m.year}</span>
                 <p>{m.text}</p>
               </div>

@@ -21,7 +21,7 @@ export default function ContactSection() {
 
   return (
     <div className="contact-block">
-      <div className="contact-block__info">
+      <div className="contact-block__info reveal reveal--left">
         <ul>
           <li>
             <FaMapMarkerAlt />
@@ -54,7 +54,7 @@ export default function ContactSection() {
         </ul>
       </div>
 
-      <form className="contact-block__form card" onSubmit={handleSubmit}>
+      <form className="contact-block__form card reveal reveal--right" style={{ '--reveal-delay': '120ms' }} onSubmit={handleSubmit}>
         <h3>Send an enquiry</h3>
         {submitted && (
           <div className="alert alert-success">Thanks for reaching out — we'll respond within a day.</div>

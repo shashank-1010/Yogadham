@@ -3,7 +3,7 @@ import './ProgramCard.css';
 
 export default function ProgramCard({ program }) {
   return (
-    <div className="program-card">
+    <div className="program-card reveal">
       <div className="program-card__meta">
         <span>{program.level}</span>
         <span className="program-card__dot" />

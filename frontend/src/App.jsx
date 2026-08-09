@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
+import ScrollProgress from './components/ScrollProgress.jsx';
+import useScrollReveal from './hooks/useScrollReveal.js';
 
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
@@ -26,6 +28,7 @@ function ScrollToTop() {
 function SiteLayout({ children }) {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main>{children}</main>
       <Footer />
@@ -34,6 +37,8 @@ function SiteLayout({ children }) {
 }
 
 export default function App() {
+  useScrollReveal();
+
   return (
     <>
       <ScrollToTop />

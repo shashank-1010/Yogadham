@@ -5,7 +5,7 @@ const FALLBACK_IMAGE =
 
 export default function TrainerCard({ trainer }) {
   return (
-    <div className="trainer-card">
+    <div className="trainer-card reveal">
       <div className="trainer-card__image">
         <img src={trainer.image || FALLBACK_IMAGE} alt={trainer.name} loading="lazy" />
       </div>

@@ -23,6 +23,13 @@
   color: var(--color-primary);
   font-size: 19px;
   margin-bottom: var(--space-3);
+  transition: transform var(--transition), background var(--transition), color var(--transition);
+}
+
+.feature-card:hover .feature-card__icon {
+  transform: scale(1.08) rotate(-6deg);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
 }
 
 .feature-card h3 {

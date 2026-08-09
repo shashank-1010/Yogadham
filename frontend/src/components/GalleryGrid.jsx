@@ -9,7 +9,7 @@ export default function GalleryGrid({ limit, showLink = false }) {
     <>
       <div className="gallery-grid">
         {images.map((img) => (
-          <div className="gallery-grid__item" key={img.id}>
+          <div className="gallery-grid__item reveal" key={img.id}>
             <img src={img.src} alt={img.alt} loading="lazy" />
           </div>
         ))}

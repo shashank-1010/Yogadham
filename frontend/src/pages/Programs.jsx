@@ -24,7 +24,7 @@ export default function Programs() {
       </section>
 
       <section className="section section--alt">
-        <div className="container programs-cta">
+        <div className="container programs-cta reveal">
           <div>
             <span className="eyebrow">Not sure which track fits?</span>
             <h2>Talk to our trainers before you register</h2>

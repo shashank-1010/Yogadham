@@ -142,6 +142,184 @@ input, select, textarea {
   }
 }
 
+/* ---------- Scroll-reveal system ----------
+   Elements marked `.reveal` fade + rise into place the first time they
+   enter the viewport (see useScrollReveal hook). Kept subtle and quick
+   so it reads as polish, not spectacle. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 640ms cubic-bezier(0.16, 1, 0.3, 1), transform 640ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children of a grid automatically, so lists of cards cascade in
+   without needing per-item delay props threaded through every page. */
+.feature-grid > .reveal:nth-child(1),
+.program-grid > .reveal:nth-child(1),
+.trainer-grid > .reveal:nth-child(1),
+.gallery-grid > .reveal:nth-child(1) { --reveal-delay: 0ms; }
+.feature-grid > .reveal:nth-child(2),
+.program-grid > .reveal:nth-child(2),
+.trainer-grid > .reveal:nth-child(2),
+.gallery-grid > .reveal:nth-child(2) { --reveal-delay: 80ms; }
+.feature-grid > .reveal:nth-child(3),
+.program-grid > .reveal:nth-child(3),
+.trainer-grid > .reveal:nth-child(3),
+.gallery-grid > .reveal:nth-child(3) { --reveal-delay: 160ms; }
+.feature-grid > .reveal:nth-child(4),
+.program-grid > .reveal:nth-child(4),
+.trainer-grid > .reveal:nth-child(4),
+.gallery-grid > .reveal:nth-child(4) { --reveal-delay: 240ms; }
+.feature-grid > .reveal:nth-child(5),
+.program-grid > .reveal:nth-child(5),
+.trainer-grid > .reveal:nth-child(5),
+.gallery-grid > .reveal:nth-child(5) { --reveal-delay: 300ms; }
+.feature-grid > .reveal:nth-child(n+6),
+.program-grid > .reveal:nth-child(n+6),
+.trainer-grid > .reveal:nth-child(n+6),
+.gallery-grid > .reveal:nth-child(n+6) { --reveal-delay: 340ms; }
+
+.timeline > .reveal:nth-child(1) { --reveal-delay: 0ms; }
+.timeline > .reveal:nth-child(2) { --reveal-delay: 100ms; }
+.timeline > .reveal:nth-child(3) { --reveal-delay: 200ms; }
+.timeline > .reveal:nth-child(4) { --reveal-delay: 300ms; }
+.timeline > .reveal:nth-child(n+5) { --reveal-delay: 380ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Directional variants — used to give two-column sections (media/text,
+   form/aside) a sense of things settling in from either side rather than
+   everything rising the same way. */
+.reveal--left {
+  transform: translateX(-32px);
+}
+
+.reveal--right {
+  transform: translateX(32px);
+}
+
+.reveal--left.is-visible,
+.reveal--right.is-visible {
+  transform: none;
+}
+
+/* ---------- Load-in animation (above-the-fold content) ----------
+   Used by Hero and PageHero, which are visible immediately on load, so
+   a scroll-triggered observer would never fire for them. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.load-in {
+  opacity: 0;
+  animation: rise-in 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--load-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .load-in {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { display: none; }
+}
+
+/* ---------- Breath-line draw-in ----------
+   The signature wavy divider "draws" itself the first time it scrolls
+   into view, like a brushstroke, instead of just appearing. */
+.breath-line path {
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+  transition: stroke-dashoffset 1500ms cubic-bezier(0.16, 1, 0.3, 1) 150ms;
+}
+
+.breath-line.is-visible path {
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breath-line path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+/* ---------- Scroll cue (hero) ---------- */
+@keyframes scroll-cue-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--color-ink-faint);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: var(--space-4) auto 0;
+  padding: 4px;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.scroll-cue:hover {
+  color: var(--color-primary);
+}
+
+.scroll-cue svg {
+  animation: scroll-cue-bounce 2000ms ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue svg { animation: none; }
+}
+
+@media (max-width: 960px) {
+  .scroll-cue { display: none; }
+}
+
 /* ---------- Layout helpers ---------- */
 .container {
   width: 100%;
@@ -231,6 +409,16 @@ input, select, textarea {
 
 .btn:active {
   transform: translateY(1px);
+}
+
+.btn-primary,
+.btn-accent {
+  transform: translateY(0);
+}
+
+.btn-primary:hover,
+.btn-accent:hover {
+  transform: translateY(-1px);
 }
 
 .btn-primary {

@@ -73,7 +73,7 @@ export default function Register() {
 
       <section className="section">
         <div className="container register-wrap">
-          <form className="card register-form" onSubmit={handleSubmit} noValidate>
+          <form className="card register-form reveal reveal--left" onSubmit={handleSubmit} noValidate>
             {status && (
               <div className={`alert ${status.type === 'success' ? 'alert-success' : 'alert-error'}`}>
                 {status.message}
@@ -134,7 +134,7 @@ export default function Register() {
             </button>
           </form>
 
-          <aside className="register-aside">
+          <aside className="register-aside reveal reveal--right" style={{ '--reveal-delay': '120ms' }}>
             <h3>What happens next?</h3>
             <ul>
               <li>Our team reviews your registration within 24 hours.</li>

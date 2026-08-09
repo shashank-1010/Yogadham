@@ -29,13 +29,13 @@ export default function Home() {
       {/* About Yogadham */}
       <section className="section">
         <div className="container about-preview">
-          <div className="about-preview__media">
+          <div className="about-preview__media reveal reveal--left">
             <img
               src="https://images.unsplash.com/photo-1573590330099-d6c7355ec595?auto=format&fit=crop&w=800&q=80"
               alt="Trainer demonstrating a posture to beginner students"
             />
           </div>
-          <div className="about-preview__text">
+          <div className="about-preview__text reveal reveal--right" style={{ '--reveal-delay': '120ms' }}>
             <span className="eyebrow">About Yogadham</span>
             <h2>A practice built on discipline, not trends</h2>
             <p>
@@ -56,7 +56,7 @@ export default function Home() {
       {/* Why Choose Us */}
       <section className="section section--alt">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Why Yogadham</span>
             <h2>What sets our practice apart</h2>
             <p>
@@ -75,7 +75,7 @@ export default function Home() {
       {/* Programs */}
       <section className="section">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Our Programs</span>
             <h2>Structured tracks for every stage of practice</h2>
             <p>From first-time beginners to therapeutic and prenatal care, each track is led by a specialised trainer.</p>
@@ -91,7 +91,7 @@ export default function Home() {
       {/* Trainers */}
       <section className="section section--alt">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Meet the Trainers</span>
             <h2>Guided by certified, experienced instructors</h2>
           </div>
@@ -119,7 +119,7 @@ export default function Home() {
       {/* Gallery preview */}
       <section className="section">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Life at Yogadham</span>
             <h2>Inside our studio</h2>
           </div>
@@ -130,7 +130,7 @@ export default function Home() {
       {/* Contact */}
       <section className="section section--alt">
         <div className="container">
-          <div className="section-head section-head--center">
+          <div className="section-head section-head--center reveal">
             <span className="eyebrow">Get in Touch</span>
             <h2>Visit us or send an enquiry</h2>
           </div>

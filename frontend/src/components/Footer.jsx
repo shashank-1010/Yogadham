@@ -6,7 +6,7 @@ import './Footer.css';
 export default function Footer() {
   return (
     <footer className="footer">
-      <svg className="breath-line" viewBox="0 0 1180 28" preserveAspectRatio="none" aria-hidden="true">
+      <svg className="breath-line reveal" viewBox="0 0 1180 28" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 14 Q 60 0, 120 14 T 240 14 T 360 14 T 480 14 T 600 14 T 720 14 T 840 14 T 960 14 T 1080 14 T 1180 14"
           fill="none" stroke="#D6B36A" strokeWidth="1.4" />
       </svg>
