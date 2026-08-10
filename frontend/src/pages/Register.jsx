@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { FaWhatsapp } from 'react-icons/fa';
 import PageHero from '../components/PageHero.jsx';
 import Seo from '../components/Seo.jsx';
 import api from '../api/axios';
-import { BATCH_OPTIONS, SESSION_TYPE_OPTIONS } from '../utils/siteData';
+import { BATCH_OPTIONS, SESSION_TYPE_OPTIONS, buildWhatsAppLink } from '../utils/siteData';
 import './Register.css';
 
 const INITIAL_FORM = {
@@ -87,6 +88,18 @@ export default function Register() {
       <section className="section">
         <div className="container register-wrap">
           <form className="card register-form reveal reveal--left" onSubmit={handleSubmit} noValidate>
+            <a
+              href={buildWhatsAppLink(
+                "Hi Yogdham Sansthan, I'm interested in registering for a yoga session. Please share more details."
+              )}
+              target="_blank"
+              rel="noreferrer"
+              className="register-whatsapp-cta"
+            >
+              <FaWhatsapp aria-hidden="true" />
+              Prefer WhatsApp? Chat with us instantly
+            </a>
+
             {status && (
               <div className={`alert ${status.type === 'success' ? 'alert-success' : 'alert-error'}`}>
                 {status.message}

@@ -34,7 +34,7 @@ export default function ContactSection() {
             <FaPhoneAlt />
             <div>
               <h4>Call us</h4>
-              <p>{CONTACT_INFO.phone}</p>
+              <p><a href={`tel:+${CONTACT_INFO.phone.replace(/\D/g, '')}`}>{CONTACT_INFO.phone}</a></p>
             </div>
           </li>
           <li>

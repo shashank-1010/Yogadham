@@ -126,16 +126,28 @@ export const SESSION_TYPE_OPTIONS = [
   'Online Session',
 ];
 
+// Single source of truth for the WhatsApp number — every WhatsApp link
+// and displayed phone number on the site is built from this.
+export const WHATSAPP_NUMBER = '917078456004';
+
+export const WHATSAPP_DEFAULT_MESSAGE =
+  "Hi Yogdham Sansthan, I'm interested in registering for a yoga session. Please share more details.";
+
+// Builds a wa.me link that opens WhatsApp with the admin's number and a
+// pre-filled message. Pass a custom message to override the default.
+export const buildWhatsAppLink = (message = WHATSAPP_DEFAULT_MESSAGE) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
 export const SOCIAL_LINKS = {
   facebook: 'https://facebook.com/yogdhamsansthan',
   instagram: 'https://instagram.com/yogdhamsansthan',
   youtube: 'https://youtube.com/@yogdhamsansthan',
-  whatsapp: 'https://wa.me/919999999999',
+  whatsapp: buildWhatsAppLink(),
 };
 
 export const CONTACT_INFO = {
   address: '14 Shanti Marg, Gomti Nagar, Lucknow, Uttar Pradesh 226010',
-  phone: '+91 99999 99999',
+  phone: '+91 70784 56004',
   email: 'hello@yogdhamsansthan.com',
   hours: 'Mon – Sat: 5:30 AM – 9:00 PM',
 };

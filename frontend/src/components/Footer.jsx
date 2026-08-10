@@ -55,7 +55,7 @@ export default function Footer() {
           <h4>Reach Us</h4>
           <ul className="footer__contact">
             <li><FaMapMarkerAlt /><span>{CONTACT_INFO.address}</span></li>
-            <li><FaPhoneAlt /><span>{CONTACT_INFO.phone}</span></li>
+            <li><FaPhoneAlt /><a href={`tel:+${CONTACT_INFO.phone.replace(/\D/g, '')}`}>{CONTACT_INFO.phone}</a></li>
             <li><FaEnvelope /><span>{CONTACT_INFO.email}</span></li>
           </ul>
         </div>
