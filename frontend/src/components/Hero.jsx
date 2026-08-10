@@ -47,14 +47,14 @@ export default function Hero() {
     <section className="hero">
       <div className="container hero__inner">
         <div className="hero__text">
-          <span className="eyebrow load-in" style={{ '--load-delay': '0ms' }}>Yogadham · Est. Lucknow</span>
+          <span className="eyebrow load-in" style={{ '--load-delay': '0ms' }}>Yogdham Sansthan · Est. Lucknow</span>
           <h1 className="load-in" style={{ '--load-delay': '80ms' }}>
             Rooted in tradition,
             <br />
             guided by practice.
           </h1>
           <p className="load-in" style={{ '--load-delay': '160ms' }}>
-            Yogadham is a dedicated yoga institution offering classical, breath-led training under
+            Yogdham Sansthan is a dedicated yoga institution offering classical, breath-led training under
             certified teachers — for beginners taking their first posture and practitioners
             deepening years of discipline.
           </p>

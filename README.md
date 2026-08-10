@@ -1,9 +1,9 @@
-# Yogadham — MERN Stack Website
+# Yogdham Sansthan — MERN Stack Website
 
 A full-stack website for a premium yoga institution, built with MongoDB, Express, React (Vite) and Node.js.
 
 ```
-yogadham/
+yogdham-sansthan/
 ├── backend/     Express API + MongoDB (Mongoose) + JWT admin auth
 └── frontend/    React (Vite) site + admin dashboard
 ```

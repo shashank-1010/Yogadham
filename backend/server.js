@@ -8,7 +8,7 @@ const start = async () => {
   await connectDB();
 
   app.listen(PORT, () => {
-    console.log(`Yogadham API listening on port ${PORT} [${process.env.NODE_ENV || 'development'}]`);
+    console.log(`Yogdham Sansthan API listening on port ${PORT} [${process.env.NODE_ENV || 'development'}]`);
   });
 };
 

@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
+import RegisterBanner from './components/RegisterBanner.jsx';
 import Footer from './components/Footer.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
@@ -29,6 +30,7 @@ function SiteLayout({ children }) {
   return (
     <>
       <ScrollProgress />
+      <RegisterBanner />
       <Navbar />
       <main>{children}</main>
       <Footer />

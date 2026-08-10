@@ -116,11 +116,8 @@ export default function AdminDashboard() {
       <header className="admin-dash__header">
         <div className="container admin-dash__header-inner">
           <div className="admin-dash__brand">
-            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
-              <rect width="32" height="32" rx="7" fill="#D6B36A" />
-              <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#1F5E4A" />
-            </svg>
-            <span>Yogadham Admin</span>
+            <img src="/logo-mark-square.png" width="26" height="26" alt="Yogdham Sansthan" />
+            <span>Yogdham Sansthan Admin</span>
           </div>
           <div className="admin-dash__user">
             <span>{admin?.name}</span>
@@ -195,13 +192,14 @@ export default function AdminDashboard() {
                       <th>Contact</th>
                       <th>Age / Gender</th>
                       <th>Preferred Batch</th>
+                      <th>Session Type</th>
                       <th>Status</th>
                       <th>Registered</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <SkeletonRows columns={7} rows={5} />
+                    <SkeletonRows columns={8} rows={5} />
                   </tbody>
                 </table>
               </div>
@@ -223,6 +221,7 @@ export default function AdminDashboard() {
                         <th>Contact</th>
                         <th>Age / Gender</th>
                         <th>Preferred Batch</th>
+                        <th>Session Type</th>
                         <th>Status</th>
                         <th>Registered</th>
                         <th></th>
@@ -238,6 +237,11 @@ export default function AdminDashboard() {
                           </td>
                           <td>{reg.age} / {reg.gender}</td>
                           <td>{reg.preferredBatch}</td>
+                          <td>
+                            <span className={`admin-badge ${reg.sessionType === 'Home Session' ? 'admin-badge--active' : 'admin-badge--inactive'}`}>
+                              {reg.sessionType}
+                            </span>
+                          </td>
                           <td>
                             <select
                               value={reg.status}

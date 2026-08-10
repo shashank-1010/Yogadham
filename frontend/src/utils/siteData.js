@@ -5,7 +5,7 @@ export const PROGRAMS = [
     duration: '6 weeks',
     level: 'Beginner',
     description:
-      'A grounded introduction to classical postures, breath control, and alignment — the traditional starting point for every Yogadham student.',
+      'A grounded introduction to classical postures, breath control, and alignment — the traditional starting point for every Yogdham Sansthan student.',
   },
   {
     id: 'vinyasa',
@@ -118,16 +118,24 @@ export const BATCH_OPTIONS = [
   'Night (7:30 PM - 9:00 PM)',
 ];
 
+// Whether the student wants a trainer to visit their home, or wants to
+// join live over video call. Shown as a required choice on the
+// registration form and visible to admins against every submission.
+export const SESSION_TYPE_OPTIONS = [
+  'Home Session',
+  'Online Session',
+];
+
 export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com/yogadham',
-  instagram: 'https://instagram.com/yogadham',
-  youtube: 'https://youtube.com/@yogadham',
+  facebook: 'https://facebook.com/yogdhamsansthan',
+  instagram: 'https://instagram.com/yogdhamsansthan',
+  youtube: 'https://youtube.com/@yogdhamsansthan',
   whatsapp: 'https://wa.me/919999999999',
 };
 
 export const CONTACT_INFO = {
   address: '14 Shanti Marg, Gomti Nagar, Lucknow, Uttar Pradesh 226010',
   phone: '+91 99999 99999',
-  email: 'hello@yogadham.com',
+  email: 'hello@yogdhamsansthan.com',
   hours: 'Mon – Sat: 5:30 AM – 9:00 PM',
 };

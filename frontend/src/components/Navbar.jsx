@@ -82,12 +82,9 @@ export default function Navbar() {
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${hidden ? 'navbar--hidden' : ''}`}>
       <div className="container navbar__inner">
         <Link to="/" className="navbar__logo">
-          <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-            <rect width="32" height="32" rx="7" fill="#1F5E4A" />
-            <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#D6B36A" />
-          </svg>
+          <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark" />
           <span>
-            Yoga<em>dham</em>
+            Yogdham <em>Sansthan</em>
           </span>
         </Link>
 
@@ -152,12 +149,9 @@ export default function Navbar() {
         >
           <div className="navbar__drawer-head">
             <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-              <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
-                <rect width="32" height="32" rx="7" fill="#1F5E4A" />
-                <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#D6B36A" />
-              </svg>
+              <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark navbar__logo-mark--sm" />
               <span>
-                Yoga<em>dham</em>
+                Yogdham <em>Sansthan</em>
               </span>
             </Link>
             <button

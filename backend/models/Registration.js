@@ -39,6 +39,11 @@ const registrationSchema = new mongoose.Schema(
         'Night (7:30 PM - 9:00 PM)',
       ],
     },
+    sessionType: {
+      type: String,
+      required: [true, 'Session type is required'],
+      enum: ['Home Session', 'Online Session'],
+    },
     status: {
       type: String,
       enum: ['Pending', 'Contacted', 'Enrolled'],

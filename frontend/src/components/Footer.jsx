@@ -14,11 +14,8 @@ export default function Footer() {
       <div className="container footer__grid">
         <div className="footer__col footer__brand">
           <Link to="/" className="footer__logo">
-            <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-              <rect width="32" height="32" rx="7" fill="#D6B36A" />
-              <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#1F5E4A" />
-            </svg>
-            <span>Yogadham</span>
+            <img src="/logo-mark-gold.png" alt="Yogdham Sansthan" className="footer__logo-mark" />
+            <span>Yogdham Sansthan</span>
           </Link>
           <p>
             A traditional yoga institution in Lucknow guiding students toward strength, stillness
@@ -35,7 +32,7 @@ export default function Footer() {
         <div className="footer__col">
           <h4>Explore</h4>
           <ul>
-            <li><Link to="/about">About Yogadham</Link></li>
+            <li><Link to="/about">About Yogdham Sansthan</Link></li>
             <li><Link to="/programs">Our Programs</Link></li>
             <li><Link to="/trainers">Our Trainers</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
@@ -66,7 +63,7 @@ export default function Footer() {
 
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
-          <p>© {new Date().getFullYear()} Yogadham. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Yogdham Sansthan. All rights reserved.</p>
           <p>Rooted in tradition, guided by practice.</p>
         </div>
       </div>

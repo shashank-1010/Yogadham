@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero.jsx';
+import Seo from '../components/Seo.jsx';
 import ProgramCard from '../components/ProgramCard.jsx';
 import { PROGRAMS } from '../utils/siteData';
 import './Programs.css';
@@ -7,6 +8,11 @@ import './Programs.css';
 export default function Programs() {
   return (
     <>
+      <Seo
+        title="Yoga Programs"
+        description="Explore Yogdham Sansthan's yoga programs in Lucknow — Hatha, Vinyasa Flow, Therapeutic, Pranayama, Prenatal and Children's Yoga. Small batches, certified trainers, Home & Online sessions."
+        path="/programs"
+      />
       <PageHero
         eyebrow="Our Programs"
         title="Structured tracks for every stage of practice"

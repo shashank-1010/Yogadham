@@ -35,11 +35,8 @@ export default function AdminLogin() {
     <section className="admin-login">
       <form className="card admin-login__card" onSubmit={handleSubmit}>
         <div className="admin-login__brand">
-          <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
-            <rect width="32" height="32" rx="7" fill="#1F5E4A" />
-            <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#D6B36A" />
-          </svg>
-          <span>Yogadham Admin</span>
+          <img src="/logo-mark-square.png" width="34" height="34" alt="Yogdham Sansthan" />
+          <span>Yogdham Sansthan Admin</span>
         </div>
         <p className="admin-login__subtitle">Sign in to manage registrations and trainer profiles.</p>
 

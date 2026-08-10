@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('yogadham_admin_token');
+  const token = localStorage.getItem('yogdham_sansthan_admin_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -19,8 +19,8 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('yogadham_admin_token');
-      localStorage.removeItem('yogadham_admin');
+      localStorage.removeItem('yogdham_sansthan_admin_token');
+      localStorage.removeItem('yogdham_sansthan_admin');
       if (window.location.pathname.startsWith('/admin/dashboard')) {
         window.location.href = '/admin/login';
       }

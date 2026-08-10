@@ -50,6 +50,12 @@
   margin-bottom: var(--space-3);
 }
 
+.footer__logo-mark {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
 .footer__brand p {
   font-size: 14.5px;
   color: rgba(255, 255, 255, 0.62);

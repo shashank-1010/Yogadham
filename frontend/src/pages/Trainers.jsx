@@ -1,4 +1,5 @@
 import PageHero from '../components/PageHero.jsx';
+import Seo from '../components/Seo.jsx';
 import TrainerCard from '../components/TrainerCard.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import { SkeletonGrid } from '../components/LoadingState.jsx';
@@ -11,10 +12,15 @@ export default function Trainers() {
 
   return (
     <>
+      <Seo
+        title="Our Trainers"
+        description="Meet Yogdham Sansthan's certified yoga trainers in Lucknow — experienced instructors leading Hatha, Vinyasa, Therapeutic and Prenatal yoga classes."
+        path="/trainers"
+      />
       <PageHero
         eyebrow="Our Trainers"
         title="Instructors trained to teach, not just to practice"
-        description="Every Yogadham trainer holds a recognised certification and has spent years in personal practice before ever leading a class."
+        description="Every Yogdham Sansthan trainer holds a recognised certification and has spent years in personal practice before ever leading a class."
       />
 
       <section className="section">

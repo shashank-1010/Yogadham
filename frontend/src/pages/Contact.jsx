@@ -1,9 +1,15 @@
 import PageHero from '../components/PageHero.jsx';
+import Seo from '../components/Seo.jsx';
 import ContactSection from '../components/ContactSection.jsx';
 
 export default function Contact() {
   return (
     <>
+      <Seo
+        title="Contact Us"
+        description="Get in touch with Yogdham Sansthan, Lucknow — ask about program timings, Home or Online sessions, or corporate wellness classes."
+        path="/contact"
+      />
       <PageHero
         eyebrow="Contact Us"
         title="We'd love to hear from you"

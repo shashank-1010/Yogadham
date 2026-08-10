@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Home.css';
+import Seo from '../components/Seo.jsx';
 import Hero from '../components/Hero.jsx';
 import FeatureCard from '../components/FeatureCard.jsx';
 import ProgramCard from '../components/ProgramCard.jsx';
@@ -24,9 +25,14 @@ export default function Home() {
 
   return (
     <>
+      <Seo
+        title="Yoga Classes in Lucknow — Home & Online Sessions"
+        description="Yogdham Sansthan offers authentic Hatha, Vinyasa, Therapeutic and Prenatal yoga programs in Lucknow with certified trainers. Choose a Home Session or Online Session and register today."
+        path="/"
+      />
       <Hero />
 
-      {/* About Yogadham */}
+      {/* About Yogdham Sansthan */}
       <section className="section">
         <div className="container about-preview">
           <div className="about-preview__media reveal reveal--left">
@@ -36,10 +42,10 @@ export default function Home() {
             />
           </div>
           <div className="about-preview__text reveal reveal--right" style={{ '--reveal-delay': '120ms' }}>
-            <span className="eyebrow">About Yogadham</span>
+            <span className="eyebrow">About Yogdham Sansthan</span>
             <h2>A practice built on discipline, not trends</h2>
             <p>
-              Founded in Lucknow, Yogadham has spent over a decade teaching yoga the way it was
+              Founded in Lucknow, Yogdham Sansthan has spent over a decade teaching yoga the way it was
               meant to be taught — with patience, correction, and a deep respect for the
               tradition. We are not a fitness fad; we are a place where breath and posture are
               studied seriously, under trainers who have themselves trained for years.
@@ -57,7 +63,7 @@ export default function Home() {
       <section className="section section--alt">
         <div className="container">
           <div className="section-head section-head--center reveal">
-            <span className="eyebrow">Why Yogadham</span>
+            <span className="eyebrow">Why Yogdham Sansthan</span>
             <h2>What sets our practice apart</h2>
             <p>
               Four commitments that guide every class we teach, from a beginner's first posture
@@ -120,7 +126,7 @@ export default function Home() {
       <section className="section">
         <div className="container">
           <div className="section-head section-head--center reveal">
-            <span className="eyebrow">Life at Yogadham</span>
+            <span className="eyebrow">Life at Yogdham Sansthan</span>
             <h2>Inside our studio</h2>
           </div>
           <GalleryGrid limit={8} showLink />

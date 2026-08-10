@@ -8,8 +8,8 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedAdmin = localStorage.getItem('yogadham_admin');
-    const token = localStorage.getItem('yogadham_admin_token');
+    const storedAdmin = localStorage.getItem('yogdham_sansthan_admin');
+    const token = localStorage.getItem('yogdham_sansthan_admin_token');
 
     if (storedAdmin && token) {
       setAdmin(JSON.parse(storedAdmin));
@@ -19,15 +19,15 @@ export function AuthProvider({ children }) {
 
   const login = useCallback(async (email, password) => {
     const { data } = await api.post('/auth/login', { email, password });
-    localStorage.setItem('yogadham_admin_token', data.token);
-    localStorage.setItem('yogadham_admin', JSON.stringify(data.admin));
+    localStorage.setItem('yogdham_sansthan_admin_token', data.token);
+    localStorage.setItem('yogdham_sansthan_admin', JSON.stringify(data.admin));
     setAdmin(data.admin);
     return data.admin;
   }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem('yogadham_admin_token');
-    localStorage.removeItem('yogadham_admin');
+    localStorage.removeItem('yogdham_sansthan_admin_token');
+    localStorage.removeItem('yogdham_sansthan_admin');
     setAdmin(null);
   }, []);
 

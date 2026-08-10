@@ -38,12 +38,19 @@
   flex-shrink: 0;
 }
 
-.navbar__logo svg {
+.navbar__logo-mark {
+  height: 38px;
+  width: auto;
+  display: block;
   transition: transform var(--transition);
 }
 
-.navbar__logo:hover svg {
-  transform: rotate(-8deg) scale(1.06);
+.navbar__logo-mark--sm {
+  height: 32px;
+}
+
+.navbar__logo:hover .navbar__logo-mark {
+  transform: rotate(-6deg) scale(1.06);
 }
 
 .navbar__logo em {

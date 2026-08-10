@@ -5,9 +5,9 @@ const Registration = require('../models/Registration');
 // @route   POST /api/registrations
 // @access  Public
 const createRegistration = asyncHandler(async (req, res) => {
-  const { name, email, phone, age, gender, preferredBatch } = req.body;
+  const { name, email, phone, age, gender, preferredBatch, sessionType } = req.body;
 
-  if (!name || !email || !phone || !age || !gender || !preferredBatch) {
+  if (!name || !email || !phone || !age || !gender || !preferredBatch || !sessionType) {
     res.status(400);
     throw new Error('All fields are required');
   }
@@ -19,6 +19,7 @@ const createRegistration = asyncHandler(async (req, res) => {
     age,
     gender,
     preferredBatch,
+    sessionType,
   });
 
   res.status(201).json({

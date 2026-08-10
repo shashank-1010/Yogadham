@@ -63,7 +63,7 @@ app.use('/api/registrations', (req, res, next) => {
 });
 
 app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: 'Yogadham API is running', timestamp: new Date().toISOString() });
+  res.json({ success: true, message: 'Yogdham Sansthan API is running', timestamp: new Date().toISOString() });
 });
 
 app.use('/api/auth', authRoutes);

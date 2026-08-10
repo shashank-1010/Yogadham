@@ -1,4 +1,5 @@
 import PageHero from '../components/PageHero.jsx';
+import Seo from '../components/Seo.jsx';
 import FeatureCard from '../components/FeatureCard.jsx';
 import { WHY_CHOOSE_US } from '../utils/siteData';
 import { FaCertificate, FaOm, FaUserFriends, FaLeaf } from 'react-icons/fa';
@@ -7,7 +8,7 @@ import './About.css';
 const ICONS = [<FaCertificate />, <FaOm />, <FaUserFriends />, <FaLeaf />];
 
 const MILESTONES = [
-  { year: '2013', text: 'Yogadham began as a single morning batch on a rented terrace in Gomti Nagar.' },
+  { year: '2013', text: 'Yogdham Sansthan began as a single morning batch on a rented terrace in Gomti Nagar.' },
   { year: '2016', text: 'Opened our first dedicated studio hall and introduced structured beginner tracks.' },
   { year: '2019', text: 'Launched therapeutic and prenatal programs with certified specialist trainers.' },
   { year: '2023', text: 'Crossed 2,000 trained students and expanded to four daily batches.' },
@@ -16,8 +17,13 @@ const MILESTONES = [
 export default function About() {
   return (
     <>
+      <Seo
+        title="About Us"
+        description="Founded in Lucknow, Yogdham Sansthan has spent over a decade teaching classical, breath-led yoga under certified trainers. Learn our story and philosophy."
+        path="/about"
+      />
       <PageHero
-        eyebrow="About Yogadham"
+        eyebrow="About Yogdham Sansthan"
         title="A decade of disciplined, authentic teaching"
         description="What started as one small morning batch has grown into a full institution — without ever losing the attention each student deserves."
       />
@@ -34,7 +40,7 @@ export default function About() {
             <span className="eyebrow">Our Story</span>
             <h2>Yoga taught the way it was meant to be</h2>
             <p>
-              Yogadham was founded by a small group of practitioners who felt that yoga was
+              Yogdham Sansthan was founded by a small group of practitioners who felt that yoga was
               being taught too quickly, and too loosely, in most fitness spaces. We set out to
               build something different — a studio where posture is corrected by hand, where
               breathing is treated as seriously as movement, and where every student is known by

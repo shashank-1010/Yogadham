@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import PageHero from '../components/PageHero.jsx';
+import Seo from '../components/Seo.jsx';
 import api from '../api/axios';
-import { BATCH_OPTIONS } from '../utils/siteData';
+import { BATCH_OPTIONS, SESSION_TYPE_OPTIONS } from '../utils/siteData';
 import './Register.css';
 
 const INITIAL_FORM = {
@@ -11,6 +12,7 @@ const INITIAL_FORM = {
   age: '',
   gender: '',
   preferredBatch: '',
+  sessionType: '',
 };
 
 export default function Register() {
@@ -36,6 +38,7 @@ export default function Register() {
     else if (form.age < 4 || form.age > 100) next.age = 'Age must be between 4 and 100';
     if (!form.gender) next.gender = 'Please select a gender';
     if (!form.preferredBatch) next.preferredBatch = 'Please select a preferred batch';
+    if (!form.sessionType) next.sessionType = 'Please choose Home Session or Online Session';
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -65,8 +68,13 @@ export default function Register() {
 
   return (
     <>
+      <Seo
+        title="Register Now"
+        description="Register for yoga classes at Yogdham Sansthan, Lucknow. Choose a Home Session or Online Session and pick your preferred batch — our team confirms within 24 hours."
+        path="/register"
+      />
       <PageHero
-        eyebrow="Join Yogadham"
+        eyebrow="Join Yogdham Sansthan"
         title="Register for a program"
         description="Fill in your details below and our team will confirm your batch within 24 hours."
       />
@@ -127,6 +135,33 @@ export default function Register() {
                 </select>
                 {errors.preferredBatch && <p className="form-error">{errors.preferredBatch}</p>}
               </div>
+            </div>
+
+            <div className="form-group">
+              <label>Session Type</label>
+              <div className="session-type-options" role="radiogroup" aria-label="Session Type">
+                {SESSION_TYPE_OPTIONS.map((option) => (
+                  <label
+                    key={option}
+                    className={`session-type-option ${form.sessionType === option ? 'session-type-option--active' : ''}`}
+                  >
+                    <input
+                      type="radio"
+                      name="sessionType"
+                      value={option}
+                      checked={form.sessionType === option}
+                      onChange={handleChange}
+                    />
+                    <span>{option}</span>
+                    <small>
+                      {option === 'Home Session'
+                        ? 'A trainer visits you at your home for in-person classes.'
+                        : 'Join live sessions with your trainer over video call, from anywhere.'}
+                    </small>
+                  </label>
+                ))}
+              </div>
+              {errors.sessionType && <p className="form-error">{errors.sessionType}</p>}
             </div>
 
             <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
