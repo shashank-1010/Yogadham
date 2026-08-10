@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
 import { SOCIAL_LINKS } from '../utils/siteData';
@@ -77,6 +78,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
+    <>
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${hidden ? 'navbar--hidden' : ''}`}>
       <div className="container navbar__inner">
         <Link to="/" className="navbar__logo">
@@ -123,68 +125,81 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* ---------- Mobile drawer (backdrop + slide-in panel) ---------- */}
-      <div
-        className={`navbar__backdrop ${menuOpen ? 'navbar__backdrop--open' : ''}`}
-        onClick={() => setMenuOpen(false)}
-        aria-hidden="true"
-      />
+    {/* ---------- Mobile drawer (backdrop + slide-in panel) ----------
+        Rendered into document.body via a portal. The navbar header uses
+        backdrop-filter for its glass effect, and per the CSS spec any
+        ancestor with backdrop-filter/transform/filter becomes the
+        containing block for position:fixed descendants — so a fixed
+        drawer nested *inside* <header> would only ever span the
+        header's own (80px) box instead of the full viewport. Portaling
+        it to <body> sidesteps that entirely. */}
+    {createPortal(
+      <>
+        <div
+          className={`navbar__backdrop ${menuOpen ? 'navbar__backdrop--open' : ''}`}
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
 
-      <aside
-        id="mobile-drawer"
-        className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site menu"
-      >
-        <div className="navbar__drawer-head">
-          <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-            <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
-              <rect width="32" height="32" rx="7" fill="#1F5E4A" />
-              <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#D6B36A" />
-            </svg>
-            <span>
-              Yoga<em>dham</em>
-            </span>
-          </Link>
-          <button
-            className="navbar__drawer-close"
-            aria-label="Close menu"
-            onClick={() => setMenuOpen(false)}
-          >
-            <FaTimes />
-          </button>
-        </div>
-
-        <nav className="navbar__drawer-links" aria-label="Mobile">
-          {NAV_LINKS.map((link, i) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === '/'}
-              className={({ isActive }) => `navbar__drawer-link ${isActive ? 'navbar__drawer-link--active' : ''}`}
-              style={{ '--i': i }}
+        <aside
+          id="mobile-drawer"
+          className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+        >
+          <div className="navbar__drawer-head">
+            <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
+              <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="7" fill="#1F5E4A" />
+                <path d="M9 23c8-1 13-6 14-14-8 1-13 6-14 14z" fill="#D6B36A" />
+              </svg>
+              <span>
+                Yoga<em>dham</em>
+              </span>
+            </Link>
+            <button
+              className="navbar__drawer-close"
+              aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
             >
-              <span>{link.label}</span>
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="navbar__drawer-foot">
-          <Link to="/register" className="btn btn-accent btn-block" onClick={() => setMenuOpen(false)}>
-            Register Now
-          </Link>
-
-          <div className="navbar__socials navbar__socials--drawer">
-            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
-            <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
+              <FaTimes />
+            </button>
           </div>
-        </div>
-      </aside>
-    </header>
+
+          <nav className="navbar__drawer-links" aria-label="Mobile">
+            {NAV_LINKS.map((link, i) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) => `navbar__drawer-link ${isActive ? 'navbar__drawer-link--active' : ''}`}
+                style={{ '--i': i }}
+                onClick={() => setMenuOpen(false)}
+              >
+                <span>{link.label}</span>
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="navbar__drawer-foot">
+            <Link to="/register" className="btn btn-accent btn-block" onClick={() => setMenuOpen(false)}>
+              Register Now
+            </Link>
+
+            <div className="navbar__socials navbar__socials--drawer">
+              <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
+              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
+              <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
+              <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
+            </div>
+          </div>
+        </aside>
+      </>,
+      document.body
+    )}
+    </>
   );
 }
