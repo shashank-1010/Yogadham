@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import PageHero from '../components/PageHero.jsx';
 import Seo from '../components/Seo.jsx';
 import api from '../api/axios';
@@ -16,7 +17,11 @@ const INITIAL_FORM = {
 };
 
 export default function Register() {
-  const [form, setForm] = useState(INITIAL_FORM);
+  const location = useLocation();
+  // Name/phone/email may arrive pre-filled from the welcome pop-up
+  // shown when the site first opens, so returning visitors don't have
+  // to retype what they already gave.
+  const [form, setForm] = useState({ ...INITIAL_FORM, ...(location.state?.prefill || {}) });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState(null); // { type: 'success' | 'error', message }

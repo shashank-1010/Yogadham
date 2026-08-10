@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import RegisterBanner from './components/RegisterBanner.jsx';
+import WelcomeRegisterModal from './components/WelcomeRegisterModal.jsx';
 import Footer from './components/Footer.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
@@ -29,6 +30,7 @@ function ScrollToTop() {
 function SiteLayout({ children }) {
   return (
     <>
+      <WelcomeRegisterModal />
       <ScrollProgress />
       <RegisterBanner />
       <Navbar />
