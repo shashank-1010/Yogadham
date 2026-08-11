@@ -45,7 +45,7 @@ export default function Home() {
             <span className="eyebrow">About Yogdham Sansthan</span>
             <h2>A practice built on discipline, not trends</h2>
             <p>
-              Founded in Lucknow, Yogdham Sansthan has spent over a decade teaching yoga the way it was
+              Founded in Lucknow in 2018, Yogdham Sansthan has spent years teaching yoga the way it was
               meant to be taught — with patience, correction, and a deep respect for the
               tradition. We are not a fitness fad; we are a place where breath and posture are
               studied seriously, under trainers who have themselves trained for years.

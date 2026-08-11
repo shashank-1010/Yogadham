@@ -8,10 +8,10 @@ import './About.css';
 const ICONS = [<FaCertificate />, <FaOm />, <FaUserFriends />, <FaLeaf />];
 
 const MILESTONES = [
-  { year: '2013', text: 'Yogdham Sansthan began as a single morning batch on a rented terrace in Gomti Nagar.' },
-  { year: '2016', text: 'Opened our first dedicated studio hall and introduced structured beginner tracks.' },
-  { year: '2019', text: 'Launched therapeutic and prenatal programs with certified specialist trainers.' },
-  { year: '2023', text: 'Crossed 2,000 trained students and expanded to four daily batches.' },
+  { year: '2018', text: 'Yogdham Sansthan began as a single morning batch on a rented terrace in Gomti Nagar.' },
+  { year: '2020', text: 'Opened our first dedicated studio hall and introduced structured beginner tracks.' },
+  { year: '2022', text: 'Launched therapeutic and prenatal programs with certified specialist trainers.' },
+  { year: '2024', text: 'Crossed 2,000 trained students and expanded to four daily batches.' },
 ];
 
 export default function About() {
@@ -19,12 +19,12 @@ export default function About() {
     <>
       <Seo
         title="About Us"
-        description="Founded in Lucknow, Yogdham Sansthan has spent over a decade teaching classical, breath-led yoga under certified trainers. Learn our story and philosophy."
+        description="Founded in Lucknow in 2018, Yogdham Sansthan has spent years teaching classical, breath-led yoga under certified trainers. Learn our story and philosophy."
         path="/about"
       />
       <PageHero
         eyebrow="About Yogdham Sansthan"
-        title="A decade of disciplined, authentic teaching"
+        title="Years of disciplined, authentic teaching"
         description="What started as one small morning batch has grown into a full institution — without ever losing the attention each student deserves."
       />
 

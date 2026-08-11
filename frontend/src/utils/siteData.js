@@ -8,6 +8,14 @@ export const PROGRAMS = [
       'A grounded introduction to classical postures, breath control, and alignment — the traditional starting point for every Yogdham Sansthan student.',
   },
   {
+    id: 'ashtanga',
+    name: 'Ashtanga Yoga',
+    duration: '8 weeks',
+    level: 'Intermediate',
+    description:
+      'A dynamic, disciplined practice built on a fixed sequence of postures linked with breath — building strength, stamina, and focus for students ready to deepen their practice.',
+  },
+  {
     id: 'vinyasa',
     name: 'Vinyasa Flow',
     duration: '8 weeks',

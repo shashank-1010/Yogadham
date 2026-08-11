@@ -7,6 +7,7 @@ const rateLimit = require('express-rate-limit');
 const authRoutes = require('./routes/authRoutes');
 const registrationRoutes = require('./routes/registrationRoutes');
 const trainerRoutes = require('./routes/trainerRoutes');
+const enquiryRoutes = require('./routes/enquiryRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
@@ -62,6 +63,19 @@ app.use('/api/registrations', (req, res, next) => {
   next();
 });
 
+// Stricter limiter for public enquiry (contact form) submissions to prevent spam
+const enquiryLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  limit: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: 'Too many enquiries submitted. Please try again later.' },
+});
+app.use('/api/enquiries', (req, res, next) => {
+  if (req.method === 'POST') return enquiryLimiter(req, res, next);
+  next();
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'Yogdham Sansthan API is running', timestamp: new Date().toISOString() });
 });
@@ -69,6 +83,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/registrations', registrationRoutes);
 app.use('/api/trainers', trainerRoutes);
+app.use('/api/enquiries', enquiryRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

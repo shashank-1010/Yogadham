@@ -5,11 +5,12 @@ import { useAuth } from '../context/AuthContext.jsx';
 import TrainerFormModal from '../components/TrainerFormModal.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import { SkeletonRows } from '../components/LoadingState.jsx';
-import { FaTrash, FaSignOutAlt, FaPen, FaPlus, FaClipboardList, FaUserFriends, FaCheckCircle, FaHourglassHalf } from 'react-icons/fa';
+import { FaTrash, FaSignOutAlt, FaPen, FaPlus, FaClipboardList, FaUserFriends, FaCheckCircle, FaHourglassHalf, FaEnvelopeOpenText } from 'react-icons/fa';
 import './AdminDashboard.css';
 
 const TABS = [
   { id: 'registrations', label: 'Registrations' },
+  { id: 'enquiries', label: 'Enquiries' },
   { id: 'trainers', label: 'Trainers' },
 ];
 
@@ -21,6 +22,10 @@ export default function AdminDashboard() {
   const [registrations, setRegistrations] = useState([]);
   const [regLoading, setRegLoading] = useState(true);
   const [regError, setRegError] = useState('');
+
+  const [enquiries, setEnquiries] = useState([]);
+  const [enqLoading, setEnqLoading] = useState(true);
+  const [enqError, setEnqError] = useState('');
 
   const [trainers, setTrainers] = useState([]);
   const [trainerLoading, setTrainerLoading] = useState(true);
@@ -41,6 +46,19 @@ export default function AdminDashboard() {
     }
   }, []);
 
+  const fetchEnquiries = useCallback(async () => {
+    setEnqLoading(true);
+    setEnqError('');
+    try {
+      const { data } = await api.get('/enquiries');
+      setEnquiries(data.data || []);
+    } catch (err) {
+      setEnqError(err.response?.data?.message || 'Failed to load enquiries');
+    } finally {
+      setEnqLoading(false);
+    }
+  }, []);
+
   const fetchTrainers = useCallback(async () => {
     setTrainerLoading(true);
     setTrainerError('');
@@ -56,8 +74,9 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchRegistrations();
+    fetchEnquiries();
     fetchTrainers();
-  }, [fetchRegistrations, fetchTrainers]);
+  }, [fetchRegistrations, fetchEnquiries, fetchTrainers]);
 
   const handleLogout = () => {
     logout();
@@ -78,6 +97,25 @@ export default function AdminDashboard() {
     try {
       await api.put(`/registrations/${id}`, { status });
       setRegistrations((prev) => prev.map((r) => (r._id === id ? { ...r, status } : r)));
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update status');
+    }
+  };
+
+  const handleDeleteEnquiry = async (id) => {
+    if (!window.confirm('Delete this enquiry permanently?')) return;
+    try {
+      await api.delete(`/enquiries/${id}`);
+      setEnquiries((prev) => prev.filter((e) => e._id !== id));
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to delete enquiry');
+    }
+  };
+
+  const handleEnquiryStatusChange = async (id, status) => {
+    try {
+      await api.put(`/enquiries/${id}`, { status });
+      setEnquiries((prev) => prev.map((e) => (e._id === id ? { ...e, status } : e)));
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to update status');
     }
@@ -156,6 +194,13 @@ export default function AdminDashboard() {
             <div>
               <strong>{trainers.filter((t) => t.isActive).length}</strong>
               <span>Trainers live on site</span>
+            </div>
+          </div>
+          <div className="admin-stat-card">
+            <div className="admin-stat-card__icon"><FaEnvelopeOpenText /></div>
+            <div>
+              <strong>{enquiries.length}</strong>
+              <span>Enquiries received</span>
             </div>
           </div>
         </div>
@@ -261,6 +306,98 @@ export default function AdminDashboard() {
                               className="admin-table__icon-btn"
                               aria-label="Delete registration"
                               onClick={() => handleDeleteRegistration(reg._id)}
+                            >
+                              <FaTrash />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )
+            )}
+          </div>
+        )}
+
+        {activeTab === 'enquiries' && (
+          <div className="admin-panel">
+            <div className="admin-panel__head">
+              <div>
+                <h2>Enquiries</h2>
+                <p>{enquiries.length} total submissions</p>
+              </div>
+            </div>
+
+            {enqError && <div className="alert alert-error">{enqError}</div>}
+
+            {!enqError && enqLoading && (
+              <div className="admin-table-wrap">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Contact</th>
+                      <th>Message</th>
+                      <th>Status</th>
+                      <th>Received</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <SkeletonRows columns={6} rows={5} />
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {!enqLoading && !enqError && (
+              enquiries.length === 0 ? (
+                <EmptyState
+                  icon={<FaEnvelopeOpenText />}
+                  title="No enquiries yet"
+                  description="Messages submitted through the Contact page's enquiry form will show up here."
+                />
+              ) : (
+                <div className="admin-table-wrap">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Received</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {enquiries.map((enq) => (
+                        <tr key={enq._id}>
+                          <td>{enq.name}</td>
+                          <td>
+                            <div>{enq.email}</div>
+                            <div className="admin-table__muted">{enq.phone}</div>
+                          </td>
+                          <td className="admin-table__muted">{enq.message}</td>
+                          <td>
+                            <select
+                              value={enq.status}
+                              onChange={(e) => handleEnquiryStatusChange(enq._id, e.target.value)}
+                              className="admin-table__status"
+                            >
+                              <option value="New">New</option>
+                              <option value="Responded">Responded</option>
+                            </select>
+                          </td>
+                          <td className="admin-table__muted">
+                            {new Date(enq.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                          </td>
+                          <td>
+                            <button
+                              className="admin-table__icon-btn"
+                              aria-label="Delete enquiry"
+                              onClick={() => handleDeleteEnquiry(enq._id)}
                             >
                               <FaTrash />
                             </button>

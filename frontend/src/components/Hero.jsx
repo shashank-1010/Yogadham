@@ -63,9 +63,9 @@ export default function Hero() {
             <Link to="/programs" className="btn btn-outline">View Programs</Link>
           </div>
           <div className="hero__stats load-in" style={{ '--load-delay': '320ms' }}>
-            <StatCounter value={12} suffix="+" label="Years teaching" />
-            <StatCounter value={2400} suffix="+" label="Students trained" />
-            <StatCounter value={15} suffix="" label="Certified trainers" />
+            <StatCounter value={10} suffix="+" label="Years teaching" />
+            <StatCounter value={2100} suffix="+" label="Students trained" />
+            <StatCounter value={15} suffix="+" label="Certified trainers" />
           </div>
         </div>
 
