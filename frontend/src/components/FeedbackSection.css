@@ -1,0 +1,33 @@
+.feedback-form {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--space-6);
+}
+
+.feedback-form h3 {
+  margin-bottom: var(--space-4);
+}
+
+.feedback-form__stars {
+  display: flex;
+  gap: 6px;
+}
+
+.feedback-form__star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--color-border);
+  transition: transform 0.15s ease;
+}
+
+.feedback-form__star:hover {
+  transform: scale(1.1);
+}
+
+.feedback-form__star .is-filled {
+  color: var(--color-primary, #D6B36A);
+}

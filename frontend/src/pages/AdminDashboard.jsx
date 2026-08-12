@@ -5,12 +5,13 @@ import { useAuth } from '../context/AuthContext.jsx';
 import TrainerFormModal from '../components/TrainerFormModal.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import { SkeletonRows } from '../components/LoadingState.jsx';
-import { FaTrash, FaSignOutAlt, FaPen, FaPlus, FaClipboardList, FaUserFriends, FaCheckCircle, FaHourglassHalf, FaEnvelopeOpenText } from 'react-icons/fa';
+import { FaTrash, FaSignOutAlt, FaPen, FaPlus, FaClipboardList, FaUserFriends, FaCheckCircle, FaHourglassHalf, FaEnvelopeOpenText, FaStar, FaCommentDots } from 'react-icons/fa';
 import './AdminDashboard.css';
 
 const TABS = [
   { id: 'registrations', label: 'Registrations' },
   { id: 'enquiries', label: 'Enquiries' },
+  { id: 'feedback', label: 'Feedback' },
   { id: 'trainers', label: 'Trainers' },
 ];
 
@@ -26,6 +27,10 @@ export default function AdminDashboard() {
   const [enquiries, setEnquiries] = useState([]);
   const [enqLoading, setEnqLoading] = useState(true);
   const [enqError, setEnqError] = useState('');
+
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [fbLoading, setFbLoading] = useState(true);
+  const [fbError, setFbError] = useState('');
 
   const [trainers, setTrainers] = useState([]);
   const [trainerLoading, setTrainerLoading] = useState(true);
@@ -59,6 +64,19 @@ export default function AdminDashboard() {
     }
   }, []);
 
+  const fetchFeedbacks = useCallback(async () => {
+    setFbLoading(true);
+    setFbError('');
+    try {
+      const { data } = await api.get('/feedback');
+      setFeedbacks(data.data || []);
+    } catch (err) {
+      setFbError(err.response?.data?.message || 'Failed to load feedback');
+    } finally {
+      setFbLoading(false);
+    }
+  }, []);
+
   const fetchTrainers = useCallback(async () => {
     setTrainerLoading(true);
     setTrainerError('');
@@ -75,8 +93,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchRegistrations();
     fetchEnquiries();
+    fetchFeedbacks();
     fetchTrainers();
-  }, [fetchRegistrations, fetchEnquiries, fetchTrainers]);
+  }, [fetchRegistrations, fetchEnquiries, fetchFeedbacks, fetchTrainers]);
 
   const handleLogout = () => {
     logout();
@@ -116,6 +135,25 @@ export default function AdminDashboard() {
     try {
       await api.put(`/enquiries/${id}`, { status });
       setEnquiries((prev) => prev.map((e) => (e._id === id ? { ...e, status } : e)));
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update status');
+    }
+  };
+
+  const handleDeleteFeedback = async (id) => {
+    if (!window.confirm('Delete this feedback permanently?')) return;
+    try {
+      await api.delete(`/feedback/${id}`);
+      setFeedbacks((prev) => prev.filter((f) => f._id !== id));
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to delete feedback');
+    }
+  };
+
+  const handleFeedbackStatusChange = async (id, status) => {
+    try {
+      await api.put(`/feedback/${id}`, { status });
+      setFeedbacks((prev) => prev.map((f) => (f._id === id ? { ...f, status } : f)));
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to update status');
     }
@@ -201,6 +239,13 @@ export default function AdminDashboard() {
             <div>
               <strong>{enquiries.length}</strong>
               <span>Enquiries received</span>
+            </div>
+          </div>
+          <div className="admin-stat-card">
+            <div className="admin-stat-card__icon admin-stat-card__icon--accent"><FaCommentDots /></div>
+            <div>
+              <strong>{feedbacks.length}</strong>
+              <span>Feedback received</span>
             </div>
           </div>
         </div>
@@ -398,6 +443,107 @@ export default function AdminDashboard() {
                               className="admin-table__icon-btn"
                               aria-label="Delete enquiry"
                               onClick={() => handleDeleteEnquiry(enq._id)}
+                            >
+                              <FaTrash />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )
+            )}
+          </div>
+        )}
+
+        {activeTab === 'feedback' && (
+          <div className="admin-panel">
+            <div className="admin-panel__head">
+              <div>
+                <h2>Feedback</h2>
+                <p>{feedbacks.length} total submissions</p>
+              </div>
+            </div>
+
+            {fbError && <div className="alert alert-error">{fbError}</div>}
+
+            {!fbError && fbLoading && (
+              <div className="admin-table-wrap">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Program</th>
+                      <th>Rating</th>
+                      <th>Feedback</th>
+                      <th>Status</th>
+                      <th>Received</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <SkeletonRows columns={8} rows={5} />
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {!fbLoading && !fbError && (
+              feedbacks.length === 0 ? (
+                <EmptyState
+                  icon={<FaCommentDots />}
+                  title="No feedback yet"
+                  description="Feedback submitted through the public Feedback page will show up here."
+                />
+              ) : (
+                <div className="admin-table-wrap">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Program</th>
+                        <th>Rating</th>
+                        <th>Feedback</th>
+                        <th>Status</th>
+                        <th>Received</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {feedbacks.map((fb) => (
+                        <tr key={fb._id}>
+                          <td>{fb.name}</td>
+                          <td className="admin-table__muted">{fb.email}</td>
+                          <td>{fb.program || '—'}</td>
+                          <td>
+                            <span className="admin-table__rating">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <FaStar key={i} className={i < fb.rating ? 'is-filled' : ''} />
+                              ))}
+                            </span>
+                          </td>
+                          <td className="admin-table__muted">{fb.message}</td>
+                          <td>
+                            <select
+                              value={fb.status}
+                              onChange={(e) => handleFeedbackStatusChange(fb._id, e.target.value)}
+                              className="admin-table__status"
+                            >
+                              <option value="New">New</option>
+                              <option value="Reviewed">Reviewed</option>
+                            </select>
+                          </td>
+                          <td className="admin-table__muted">
+                            {new Date(fb.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                          </td>
+                          <td>
+                            <button
+                              className="admin-table__icon-btn"
+                              aria-label="Delete feedback"
+                              onClick={() => handleDeleteFeedback(fb._id)}
                             >
                               <FaTrash />
                             </button>

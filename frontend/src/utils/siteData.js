@@ -55,6 +55,14 @@ export const PROGRAMS = [
     description:
       'Playful, story-led sessions that introduce young students to posture, balance, and stillness in a joyful setting.',
   },
+  {
+    id: 'postnatal',
+    name: 'Postnatal Yoga',
+    duration: 'Ongoing',
+    level: 'New mothers',
+    description:
+      'Gentle recovery-focused sequences for new mothers, rebuilding core and pelvic-floor strength with trainer guidance at a safe, supportive pace.',
+  },
 ];
 
 export const WHY_CHOOSE_US = [

@@ -210,6 +210,17 @@
   border-bottom: none;
 }
 
+.admin-table__rating {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--color-border);
+  font-size: 13px;
+}
+
+.admin-table__rating .is-filled {
+  color: #D6B36A;
+}
+
 .admin-table__muted {
   color: var(--color-ink-soft);
   font-size: 13px;

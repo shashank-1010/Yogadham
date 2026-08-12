@@ -14,6 +14,21 @@
   transform: translateY(-100%);
 }
 
+.navbar__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.navbar__tagline {
+  font-size: 0.65rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #a0a0a0;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
 .navbar--scrolled {
   background: rgba(250, 249, 246, 0.97);
   border-color: var(--color-border);

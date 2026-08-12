@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { label: 'Programs', to: '/programs' },
   { label: 'Trainers', to: '/trainers' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'Feedback', to: '/feedback' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -83,8 +84,9 @@ export default function Navbar() {
       <div className="container navbar__inner">
         <Link to="/" className="navbar__logo">
           <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark" />
-          <span>
+          <span className="navbar__logo-text">
             Yogdham <em>Sansthan</em>
+            <small className="navbar__tagline">The Art of Healthy Living</small>
           </span>
         </Link>
 
@@ -150,8 +152,9 @@ export default function Navbar() {
           <div className="navbar__drawer-head">
             <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
               <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark navbar__logo-mark--sm" />
-              <span>
+              <span className="navbar__logo-text">
                 Yogdham <em>Sansthan</em>
+                <small className="navbar__tagline">The Art of Healthy Living</small>
               </span>
             </Link>
             <button

@@ -37,6 +37,7 @@ export default function Footer() {
             <li><Link to="/trainers">Our Trainers</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/register">Register Now</Link></li>
+            <li><Link to="/feedback">Feedback</Link></li>
           </ul>
         </div>
 
@@ -44,10 +45,13 @@ export default function Footer() {
           <h4>Programs</h4>
           <ul>
             <li>Hatha Yoga Foundations</li>
+            <li>Ashtanga Yoga</li>
             <li>Vinyasa Flow</li>
             <li>Therapeutic Yoga</li>
             <li>Pranayama &amp; Meditation</li>
             <li>Prenatal Yoga</li>
+            <li>Postnatal Yoga</li>
+            <li>Children's Yoga</li>
           </ul>
         </div>
 

@@ -14,6 +14,7 @@ import Programs from './pages/Programs.jsx';
 import Trainers from './pages/Trainers.jsx';
 import Gallery from './pages/Gallery.jsx';
 import Contact from './pages/Contact.jsx';
+import Feedback from './pages/Feedback.jsx';
 import Register from './pages/Register.jsx';
 import AdminLogin from './pages/AdminLogin.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
@@ -53,6 +54,7 @@ export default function App() {
         <Route path="/trainers" element={<SiteLayout><Trainers /></SiteLayout>} />
         <Route path="/gallery" element={<SiteLayout><Gallery /></SiteLayout>} />
         <Route path="/contact" element={<SiteLayout><Contact /></SiteLayout>} />
+        <Route path="/feedback" element={<SiteLayout><Feedback /></SiteLayout>} />
         <Route path="/register" element={<SiteLayout><Register /></SiteLayout>} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
