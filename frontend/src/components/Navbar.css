@@ -21,14 +21,17 @@
   transform: translateY(-100%);
 }
 
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
 .navbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 /* Logo Styles */
@@ -61,7 +64,7 @@
 
 .navbar__logo-main em {
   font-style: normal;
-  color: #c8a26a; /* Golden color as in your image */
+  color: #c8a26a;
   font-weight: 700;
 }
 
@@ -78,13 +81,13 @@
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.2rem;
   flex: 1;
   justify-content: center;
 }
 
 .navbar__link {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.9rem;
   color: #1a1a1a;
   text-decoration: none;
   font-size: 0.9rem;
@@ -123,32 +126,6 @@
   align-items: center;
   gap: 1.5rem;
   flex-shrink: 0;
-}
-
-.navbar__socials {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.navbar__socials a {
-  color: #555;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: transparent;
-  text-decoration: none;
-}
-
-.navbar__socials a:hover {
-  color: #c8a26a;
-  background: rgba(200, 162, 106, 0.1);
-  transform: translateY(-2px);
 }
 
 /* Button */
@@ -330,6 +307,7 @@
 }
 
 .navbar__socials--drawer {
+  display: flex;
   justify-content: center;
   gap: 1rem;
 }
@@ -339,6 +317,13 @@
   height: 40px;
   font-size: 1rem;
   background: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .navbar__socials--drawer a:hover {
@@ -353,32 +338,13 @@
   }
   
   .navbar__link {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
-  }
-  
-  .navbar__socials {
-    gap: 0.5rem;
-  }
-  
-  .navbar__socials a {
-    width: 28px;
-    height: 28px;
-    font-size: 0.8rem;
-  }
-  
-  .btn {
-    padding: 0.5rem 1.2rem;
+    padding: 0.4rem 0.7rem;
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 992px) {
   .navbar__links {
-    display: none;
-  }
-  
-  .navbar__socials {
     display: none;
   }
   
@@ -406,6 +372,10 @@
 }
 
 @media (max-width: 576px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
   .navbar__inner {
     padding: 0 1rem;
   }
