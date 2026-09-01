@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp, FaBars, FaTimes, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { SOCIAL_LINKS } from '../utils/siteData';
 import './Navbar.css';
 
@@ -99,14 +99,7 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar__right">
-          <div className="navbar__socials">
-            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook"><FaFacebookF /></a>
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
-            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><FaYoutube /></a>
-            <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp"><FaWhatsapp /></a>
-          </div>
           <Link to="/register" className="btn btn-accent">Register Now</Link>
-
           <button
             ref={burgerRef}
             className="navbar__burger"
