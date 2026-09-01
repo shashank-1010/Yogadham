@@ -29,9 +29,6 @@ export default function Navbar() {
     const update = () => {
       const y = window.scrollY;
       setScrolled(y > 12);
-      // Hide the bar while scrolling down past the hero, reveal it again
-      // on any upward scroll — keeps navigation reachable without it
-      // permanently eating into content on mobile.
       if (menuOpen) {
         setHidden(false);
       } else if (y > lastY && y > 160) {
@@ -54,12 +51,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [menuOpen]);
 
-  // Close the drawer on route change.
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
 
-  // Lock body scroll while the drawer is open and close on Escape.
   useEffect(() => {
     if (menuOpen) {
       const prevOverflow = document.body.style.overflow;
@@ -85,7 +80,7 @@ export default function Navbar() {
         <Link to="/" className="navbar__logo">
           <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark" />
           <span className="navbar__logo-text">
-            <span className="navbar__logo-main">Yogdham Sansthan</span>
+            <span className="navbar__logo-main">Yogdham <em>Sansthan</em></span>
             <small className="navbar__tagline">The Art of Healthy Living</small>
           </span>
         </Link>
@@ -126,14 +121,6 @@ export default function Navbar() {
       </div>
     </header>
 
-    {/* ---------- Mobile drawer (backdrop + slide-in panel) ----------
-        Rendered into document.body via a portal. The navbar header uses
-        backdrop-filter for its glass effect, and per the CSS spec any
-        ancestor with backdrop-filter/transform/filter becomes the
-        containing block for position:fixed descendants — so a fixed
-        drawer nested *inside* <header> would only ever span the
-        header's own (80px) box instead of the full viewport. Portaling
-        it to <body> sidesteps that entirely. */}
     {createPortal(
       <>
         <div
@@ -153,7 +140,7 @@ export default function Navbar() {
             <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
               <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark navbar__logo-mark--sm" />
               <span className="navbar__logo-text">
-                <span className="navbar__logo-main">Yogdham Sansthan</span>
+                <span className="navbar__logo-main">Yogdham <em>Sansthan</em></span>
                 <small className="navbar__tagline">The Art of Healthy Living</small>
               </span>
             </Link>
