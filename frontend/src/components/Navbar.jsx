@@ -85,7 +85,7 @@ export default function Navbar() {
         <Link to="/" className="navbar__logo">
           <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark" />
           <span className="navbar__logo-text">
-            Yogdham <em>Sansthan</em>
+            <span className="navbar__logo-main">Yogdham Sansthan</span>
             <small className="navbar__tagline">The Art of Healthy Living</small>
           </span>
         </Link>
@@ -153,7 +153,7 @@ export default function Navbar() {
             <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
               <img src="/logo-mark.png" alt="Yogdham Sansthan" className="navbar__logo-mark navbar__logo-mark--sm" />
               <span className="navbar__logo-text">
-                Yogdham <em>Sansthan</em>
+                <span className="navbar__logo-main">Yogdham Sansthan</span>
                 <small className="navbar__tagline">The Art of Healthy Living</small>
               </span>
             </Link>
